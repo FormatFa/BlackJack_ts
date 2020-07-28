@@ -1,0 +1,26 @@
+流程:
+
+
+- 下注
+- 已开局
+    - 玩家回合 
+    - 庄家回合
+- 结算 （回到）
+
+
+root 
+    - init-root
+    - 下注 deal时到playing
+    - 已开局 playing。end时到settle
+        - 发牌 dealed 就到玩家
+        - 玩家决策 player acted就到庄家
+        - 庄家决策  
+    - 结算 bet时到
+
+onBetState 下注
+OnEndState  结算
+onEnterDealState       发牌
+onEnterPlayersTurnState 玩家回合
+onExitPlayerTurnState   结束玩家回合时
+onEnterDealersTurnState 庄家回合
+

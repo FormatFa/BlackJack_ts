@@ -1,0 +1,47 @@
+
+
+1.  拖动布局游戏界面的，投注，金币等按钮
+
+2.  编写扑克牌的类,Card卡片类，表示一张卡片，Decks 一副牌
+
+- 编写参与者Actor类，Player类继承自参与者,Dealer类也是
+
+
+Actor包含的信息有：继承自Component
+名牌，暗牌
+state 状态
+
+addCard 抽卡
+
+addHoleCard
+
+
+- 创建player 预制体
+ - playerinfo 
+ - stake on table 
+ - cardInfo
+
+
+
+ - 定义Player类，
+
+
+ - 创建游戏节点，存放游戏逻辑的代码
+ 子节点有
+ InGameUI 负责游戏里各个节点的显示隐藏
+ ,AudioMng,
+ AssetMng,
+ Bet bet的逻辑
+ 三个
+
+ - 编写状态机
+
+- InGameUI 
+控制
+- 开始按钮
+- 投注按钮的，
+
+显示隐藏
+获取assetMgn实例
+
+
