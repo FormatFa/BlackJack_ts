@@ -45,3 +45,4 @@ addHoleCard
 获取assetMgn实例
 
 
+根据状态回调事件，设置节点显示

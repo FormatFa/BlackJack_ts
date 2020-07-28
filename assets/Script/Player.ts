@@ -10,7 +10,7 @@ import Actor from "./data/Actor";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends Actor {
+export default class Player extends Actor {
 
     // LIFE-CYCLE CALLBACKS:
 
