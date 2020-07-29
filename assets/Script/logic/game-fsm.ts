@@ -23,6 +23,8 @@ interface GameFsmListener {
 
     OnEnterEndState()  //进入结算
 
+    // onStateChange() // 测试
+
     
     
 }
@@ -37,11 +39,16 @@ class GameFsm {
     isEvaluating = false
 
     constructor(public listener:GameFsmListener) {
+
         
     }
     
     // 初始化状态
     init() {
+
+        // 打印状态切换日志
+
+        state.log.add(msg=>console.log(msg),state.log.Entry|state.log.Exit|state.log.Evaluate)
 
         let model = new state.State("root")
 
@@ -49,6 +56,7 @@ class GameFsm {
 
         let bet = new state.State("下注",model)
         let playing = new state.State("已开局",model)
+        
         
 
 
@@ -88,13 +96,21 @@ class GameFsm {
         })
         // 进入发牌
         deal.entry(()=>{this.listener.onEnterDealState()})
+
         // 玩家
-        deal.entry(()=>this.listener.onEnterPlayersTurnState()).exit(()=>this.listener.onExitPlayerTurnState())
+        playersTurn.entry(()=>this.listener.onEnterPlayersTurnState()).exit(()=>this.listener.onExitPlayerTurnState())
+
         // 老庄家
         dealersTurn.entry(()=>this.listener.onEnterDealersTurnState())
+
+        settled.entry(()=>this.listener.OnEnterEndState())
+
+
+        this.instance = new state.Instance("instance",model)
     }
 
     _evaluate(msg:string) {
+        console.log("evaluate:"+msg)
         this.instance.evaluate(msg)
 
     }
@@ -102,7 +118,7 @@ class GameFsm {
     toDeal() {
         if(this.isEvaluating) {
             setTimeout(()=>{
-
+                this.toDeal()
             },1)
             return;
         }
@@ -120,7 +136,7 @@ class GameFsm {
     }
     // 玩家玩了
     onPlayerActed() {
-        this._evaluate('player acted');
+        this._evaluate('player_acted');
     }
     // 庄家执行完后，就end了
     onDealerActed() {

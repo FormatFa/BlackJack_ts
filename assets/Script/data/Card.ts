@@ -46,6 +46,7 @@ class Card {
      */
 
     static fromId(id:number):Card {
+        
         return cards[id]
     }
 }

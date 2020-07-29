@@ -1,0 +1,48 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "chiptoss",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            0,
+            0,
+            0
+          ],
+          "curve": "linear"
+        },
+        {
+          "frame": 0.15,
+          "value": [
+            -244.18859999999998,
+            109.071,
+            0
+          ]
+        },
+        {
+          "frame": 0.25,
+          "value": [
+            -542.641,
+            149.226,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "frame": -0.03333333333333333,
+      "func": "",
+      "params": []
+    }
+  ]
+}

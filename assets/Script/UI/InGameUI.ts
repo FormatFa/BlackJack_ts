@@ -7,14 +7,55 @@
 
 const {ccclass, property} = cc._decorator;
 
+/**
+ * game 状态的UI
+ */
+
+
 @ccclass
-export default class NewClass extends cc.Component {
+export default class InGameUI extends cc.Component {
 
-    @property(cc.Label)
-    label: cc.Label = null;
+    
+    // 结算后显示的，开始下注按钮
+    @property(cc.Node) btnStartBet:cc.Node
 
-    @property
-    text: string = 'hello';
+
+    // bet 状态
+    @property(cc.Node) betStateUI:cc.Node
+    // 游戏状态
+    @property(cc.Node) gameStateUI:cc.Node
+
+    @property(cc.Node) resultUI:cc.Node
+    @property(cc.Label) resultText:cc.Label
+
+
+
+
+    // 进入玩家回合时。显示 停牌，要牌，双倍那个UI
+    showGameUI() {
+
+        // this.betStateUI.active =
+        this.gameStateUI.active = true;
+        this.resultUI.active = false;
+        this.btnStartBet.active = false;
+
+    }
+
+    showBetUI() {
+        this.gameStateUI.active = false;
+        this.resultUI.active = false;
+        this.btnStartBet.active = false;
+    }
+
+    // 结算
+    showEndUI() {
+        
+        this.gameStateUI.active = false;
+        this.resultUI.active = true;
+        this.btnStartBet.active = true;
+    }
+
+
 
     // LIFE-CYCLE CALLBACKS:
 

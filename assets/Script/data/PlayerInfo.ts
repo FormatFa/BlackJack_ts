@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 export default class PlayerInfo {
 
-    constructor(public name:string,public gold:number,photoIdx:0) {
+    constructor(public name:string,public gold:number,photoIdx:number) {
     }
 
 }

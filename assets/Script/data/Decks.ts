@@ -8,7 +8,7 @@
 import {Card} from './Card'
 export default class Descks {
 
-    // 还没发出去的牌，值是每张牌的id
+    // 还没发出去的牌
     _cardIds = []
 
     // 牌的总数量
@@ -17,6 +17,8 @@ export default class Descks {
     constructor(readonly numberOfDecks:number) {
         this._cardIds = new Array(numberOfDecks*52)
         this.reset()
+        console.log("构造decks:")
+        console.log(this._cardIds)
     }
 
     /**
@@ -30,8 +32,8 @@ export default class Descks {
 
             for(let cardId = 0;cardId<52;cardId+=1) {
                 this._cardIds[index] = Card.fromId(cardId)
+                index++;
             }
-
 
         }
     }
@@ -39,9 +41,10 @@ export default class Descks {
     /**
      *  抽一张牌
      */
-    draw() {
+    draw():Card {
 
         let cardIds = this._cardIds
+        
         let len = cardIds.length
 
         let index = (Math.random()*len)|0
@@ -52,6 +55,7 @@ export default class Descks {
         let last = cardIds[len-1]
         cardIds[index] = last
         cardIds.length = len-1
+        
         return result
     }
 

@@ -5,13 +5,16 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-import Actor from "./data/Actor";
-
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Dealer extends Actor {
+export default class AudioMng extends cc.Component {
 
+    @property(cc.Label)
+    label: cc.Label = null;
+
+    @property
+    text: string = 'hello';
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -19,11 +22,6 @@ export default class Dealer extends Actor {
 
     start () {
 
-    }
-
-    // 显示暗牌
-    revealHoleCard() {
-        
     }
 
     // update (dt) {}

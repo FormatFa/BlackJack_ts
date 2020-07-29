@@ -5,14 +5,15 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-import Actor from "./data/Actor";
-
 const {ccclass, property} = cc._decorator;
-
+/* 金币的脚本组件 ，挂着chip预制体上*/
 @ccclass
-export default class Dealer extends Actor {
+export default class ChipToss extends cc.Component {
 
-
+    
+    
+    @property(cc.Animation)
+    animation:cc.Animation
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
@@ -21,10 +22,9 @@ export default class Dealer extends Actor {
 
     }
 
-    // 显示暗牌
-    revealHoleCard() {
-        
+    // 播放动画
+    play () {
+        this.animation.play("chiptoss")
     }
-
     // update (dt) {}
 }

@@ -17,6 +17,7 @@ root
         - 庄家决策  
     - 结算 bet时到
 
+
 onBetState 下注
 OnEndState  结算
 onEnterDealState       发牌
@@ -24,3 +25,6 @@ onEnterPlayersTurnState 玩家回合
 onExitPlayerTurnState   结束玩家回合时
 onEnterDealersTurnState 庄家回合
 
+1. 下注，点击投注，就发完牌
+
+2. 
