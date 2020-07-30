@@ -52,7 +52,6 @@ export default class CardRender extends cc.Component {
         if(isFaceCard) {
 
             this.mainPic.spriteFrame = this.texFaces[card.point-10-1]
-
         }
         else
         {
@@ -70,9 +69,6 @@ export default class CardRender extends cc.Component {
         // 花色信息
         this.suit.spriteFrame = this.texSuitSmall[card.suit-1]
     }
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {}
 
     start () {
 

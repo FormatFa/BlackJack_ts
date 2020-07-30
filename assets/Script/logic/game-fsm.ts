@@ -22,15 +22,6 @@ interface GameFsmListener {
     onEnterDealersTurnState() //庄家回合
 
     OnEnterEndState()  //进入结算
-
-    // onStateChange() // 测试
-
-    
-    
-}
-enum   GameState {
-    
-    DEAL
 }
 
 class GameFsm {
@@ -39,18 +30,18 @@ class GameFsm {
     isEvaluating = false
 
     constructor(public listener:GameFsmListener) {
-
-        
     }
     
     // 初始化状态
     init() {
 
         // 打印状态切换日志
-
+        
         state.log.add(msg=>console.log(msg),state.log.Entry|state.log.Exit|state.log.Evaluate)
 
         let model = new state.State("root")
+
+        
 
         let initial = new state.PseudoState("init-root",model)
 
@@ -65,9 +56,9 @@ class GameFsm {
         let playersTurn = new state.State("玩家决策",playing)
         let dealersTurn = new state.State("庄家决策",playing)
 
-        let settled = new state.State("结算",model)
+        let end = new state.State("结算",model)
 
-    
+        
 
         // 设置转换条件
         initial.to(bet) //进入下注
@@ -82,9 +73,9 @@ class GameFsm {
 
 
         // playing 中接收到end后，进入结算
-        playing.on(String).when(state=>state=="end").to(settled)
+        playing.on(String).when(state=>state=="end").to(end)
         // 结算时收到bet，就开始
-        settled.on(String).when(state=>state=="bet").to(bet)
+        end.on(String).when(state=>state=='bet').to(bet)
 
 
          //--- 切换状态时调用回调--
@@ -103,9 +94,7 @@ class GameFsm {
         // 老庄家
         dealersTurn.entry(()=>this.listener.onEnterDealersTurnState())
 
-        settled.entry(()=>this.listener.OnEnterEndState())
-
-
+        end.entry(()=>this.listener.OnEnterEndState())
         this.instance = new state.Instance("instance",model)
     }
 
@@ -143,4 +132,7 @@ class GameFsm {
         this._evaluate('end');
     }
 }
+
+
+
 export {GameFsm,GameFsmListener}

@@ -5,9 +5,9 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-import ChipToss from "./ChipToss";
+import ChipToss from "../ChipToss";
 import { number } from "yargs";
-import Game from "./Game";
+import Game from "../Game";
 
 const {ccclass, property} = cc._decorator;
 
@@ -17,7 +17,7 @@ const {ccclass, property} = cc._decorator;
  * 设置金币在投注按钮，调用投注动画,飞到桌子的指定位置
  */
 @ccclass
-export default class BetUI extends cc.Component {
+export default class BetChipUI extends cc.Component {
 
     // 金币的预制体
     @property(cc.Prefab)
@@ -71,18 +71,20 @@ export default class BetUI extends cc.Component {
         chip.setPosition(startPos)
         
         let chipToss = chip.getComponent(ChipToss)
+
         chipToss.play()
 
     }
 
 
-    // 清空已经添加的
-    // TODO 调用game清空
-    resetChips() {
-
+    // 点击清空按钮，清空已经添加的。和重设stake
+    // 
+    // resetChips() {
+    //     this.resetChips()
+    // }
+    resetTossedChips() {
         this.chipAnchor.removeAllChildren() //删除所有锚点下的
     }
-
     start () {
 
     }

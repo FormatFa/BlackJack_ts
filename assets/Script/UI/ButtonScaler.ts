@@ -7,18 +7,36 @@
 
 const {ccclass, property} = cc._decorator;
 
+/**
+ * 按钮变大，变小
+ */
 @ccclass
-export default class NewClass extends cc.Component {
-
-    @property(cc.Label)
-    label: cc.Label = null;
+export default class ButtonScaler extends cc.Component {
 
     @property
-    text: string = 'hello';
+    transDuration = 1
+
+    @property
+    pressedScale = 0.5
+
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+    onLoad () {
+
+        let pressDownAction  = cc.scaleTo(this.transDuration,this.pressedScale)
+        let pressUpAction = cc.scaleTo(this.transDuration,1)
+
+        this.node.on(cc.Node.EventType.TOUCH_START,()=>{
+            this.node.stopAllActions()
+            this.node.runAction(pressDownAction)
+        })
+        let touchDone = ()=>{
+            this.node.stopAllActions()
+            this.node.runAction(pressUpAction)
+        }
+        this.node.on(cc.Node.EventType.TOUCH_END,touchDone)
+    }
 
     start () {
 

@@ -5,29 +5,32 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import ResulStatetUI from "./ResulStatetUI";
+import { OutCome } from "../logic/BlackJack";
+import BetChipUI from "./BetChipUI";
+
 const {ccclass, property} = cc._decorator;
 
 /**
- * game 状态的UI
+ * 对应Game，根据状态显示隐藏组件
  */
 
 
 @ccclass
-export default class InGameUI extends cc.Component {
+export default class GameUI extends cc.Component {
 
     
-    // 结算后显示的，开始下注按钮
-    @property(cc.Node) btnStartBet:cc.Node
+   
 
 
     // bet 状态
     @property(cc.Node) betStateUI:cc.Node
     // 游戏状态
     @property(cc.Node) gameStateUI:cc.Node
+    // 结算状态
+    @property(ResulStatetUI) resultStateUI:ResulStatetUI
 
-    @property(cc.Node) resultUI:cc.Node
-    @property(cc.Label) resultText:cc.Label
-
+    @property(BetChipUI) betChipUI:BetChipUI
 
 
 
@@ -36,23 +39,29 @@ export default class InGameUI extends cc.Component {
 
         // this.betStateUI.active =
         this.gameStateUI.active = true;
-        this.resultUI.active = false;
-        this.btnStartBet.active = false;
+        this.resultStateUI.hide()
+
+        this.betStateUI.active = false;
+        
 
     }
 
     showBetUI() {
+        this.betChipUI.resetTossedChips()
         this.gameStateUI.active = false;
-        this.resultUI.active = false;
-        this.btnStartBet.active = false;
+        this.resultStateUI.hide()
+        this.betStateUI.active = true;
     }
 
-    // 结算
-    showEndUI() {
+    // 结算，显示结果
+    showEndUI(outCome:OutCome) {    
         
         this.gameStateUI.active = false;
-        this.resultUI.active = true;
-        this.btnStartBet.active = true;
+        this.resultStateUI.show()
+        this.resultStateUI.setResult(outCome)
+
+        this.betStateUI.active = false;
+
     }
 
 

@@ -29,7 +29,11 @@ export default class ActorRender extends cc.Component {
     // 下注了多少的文字
     @property(cc.Label) stakeNumLabel:cc.Label = null
 
+    // 拥有的总资金
+    @property(cc.Label) totalStakeLabel:cc.Label = null
+
     @property(cc.Node) anchorCards:cc.Node = null //卡牌的位置
+
     @property cardSpace= 60 //卡牌的距离
 
     // 对应的Actor
@@ -81,21 +85,27 @@ export default class ActorRender extends cc.Component {
         render.reveal(show)
     }
 
-    // 揭示暗牌后，设置为显示
+    /**
+     * 显示暗牌
+     */
     onReveal() {
-        console.log("揭示暗牌.....")
         // TODO 这里获取到的是第一个?
         let firstCard = cc.find("cardPrefab",this.anchorCards)
         let cardRenderfirst= firstCard.getComponent(CardRender)
         console.log(firstCard)
         cardRenderfirst.reveal(true)
-
-
-
     }
 
+    // 清空卡牌
+    resetCard() {
+        this.anchorCards.removeAllChildren()
+    }
 
-    // TODO 更新a状态
+    // 更新总状态
+    updateTotalStakeDisplay(num) {
+        this.totalStakeLabel.string=`$${num}`
+    }
+    
 
     // LIFE-CYCLE CALLBACKS:
 

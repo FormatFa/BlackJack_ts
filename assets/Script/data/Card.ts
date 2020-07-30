@@ -5,15 +5,12 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-const {ccclass, property} = cc._decorator;
-
 enum Suit {
     Spade = 1, //黑桃 ♠
     Heart,      //红桃 ♥
     Club,       //梅花 ♣ 
     Diamond     //方块 ♦
 }
-// 
 let  A2_10JQK = 'NAN,A,2,3,4,5,6,7,8,9,10,J,Q,K'.split(',');
 /**
  * 牌，表示一张卡牌
@@ -61,28 +58,8 @@ for(let s =1;s<=4;s+=1) {
 }
 
 
-//手中牌的状态
-enum ActorPlayingState {
-    Normal,//正常
-    Stand, //停牌
-    Report, //报到
-    Bust    //爆了
-}
 
-// 输赢结果
-enum OutCome {
-    Win,
-    Lose,
-    Tie
-}
-// 牌型，越大越厉害
-enum Hand {
-    Normal,
-    BlackJack,
-    FiveCard
-}
 
 export {
-
-    cards,Card, Suit,ActorPlayingState,OutCome,Hand
+    cards,Card, Suit
 }

@@ -47,6 +47,7 @@ export default class Descks {
         
         let len = cardIds.length
 
+        // TODO |0
         let index = (Math.random()*len)|0
 
         let result = cardIds[len-1]

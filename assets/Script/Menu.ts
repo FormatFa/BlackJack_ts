@@ -6,8 +6,23 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const {ccclass, property} = cc._decorator;
-export default class PlayerInfo {
 
-    constructor(public name:string,public gold:number,photoIdx:number) {
+@ccclass
+export default class Menu extends cc.Component {
+
+    @property(cc.Label)
+    label: cc.Label = null;
+
+    @property
+    text: string = 'hello';
+
+    // LIFE-CYCLE CALLBACKS:
+
+    // onLoad () {}
+
+    start () {
+
     }
+
+    // update (dt) {}
 }

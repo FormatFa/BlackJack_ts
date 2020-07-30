@@ -27,14 +27,21 @@ export default class Player extends Actor {
     addStake(stake:number) {
 
         this.stakeNum += stake
-        this.updateStake()
+        this.updateStakeDisplay()
+    }
+    // 重置投注
+    resetStake() {
+        this.stakeNum = 0;
+        this.updateStakeDisplay()
     }
 
     // 更新投注的文字
-    updateStake() {
-
+    updateStakeDisplay() {
         this.renderer.stakeNumLabel.string = "投注:"+this.stakeNum
-    }
 
+    }
+    updateTotalStakeDisplay(num:number) {
+        this.renderer.updateTotalStakeDisplay(num)
+    }
     // update (dt) {}
 }
